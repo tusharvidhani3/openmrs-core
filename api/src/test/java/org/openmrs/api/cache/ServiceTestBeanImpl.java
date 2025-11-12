@@ -13,7 +13,9 @@ import java.util.UUID;
 
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Service;
 
+@Service("serviceTestBeanImpl")
 public class ServiceTestBeanImpl extends BaseOpenmrsService implements ServiceTestBean {
 	
 	@Cacheable("testCache")

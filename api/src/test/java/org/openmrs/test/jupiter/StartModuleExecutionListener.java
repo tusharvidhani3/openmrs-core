@@ -20,6 +20,7 @@ import java.util.Properties;
 import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
+import org.openmrs.api.OpenmrsApplicationContextConfig;
 import org.openmrs.api.context.Context;
 import org.openmrs.api.db.SerializedObjectDAOTest;
 import org.openmrs.module.ModuleConstants;
@@ -34,6 +35,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.core.io.UrlResource;
 import org.springframework.test.context.TestContext;
@@ -129,8 +131,8 @@ public class StartModuleExecutionListener extends AbstractTestExecutionListener 
 	 */
 	protected void removeFilteredBeanDefinitions(ApplicationContext context) {
 		// first looking at a context loading the bean definitions "now"
-		GenericApplicationContext ctx = new GenericApplicationContext();
-		(new XmlBeanDefinitionReader(ctx)).loadBeanDefinitions("classpath:applicationContext-service.xml");
+		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(OpenmrsApplicationContextConfig.class);
+
 		Set<String> filteredBeanNames = new HashSet<>();
 		for (String beanName : ctx.getBeanDefinitionNames()) {
 			if (beanName.startsWith("openmrsProfile")) {

@@ -24,10 +24,12 @@ import org.openmrs.layout.LayoutSupport;
 import org.openmrs.util.OpenmrsConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 /**
  * @since 1.12
  */
+@Component
 public class NameSupport extends LayoutSupport<NameTemplate> implements GlobalPropertyListener {
 
 	private static final Logger log = LoggerFactory.getLogger(NameSupport.class);

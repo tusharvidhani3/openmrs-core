@@ -78,6 +78,8 @@ import org.openmrs.PersonAttribute;
 import org.openmrs.PersonName;
 import org.openmrs.User;
 import org.openmrs.annotation.OpenmrsProfileExcludeFilter;
+import org.openmrs.api.OpenmrsApplicationContextConfig;
+import org.openmrs.api.config.TestingApplicationContextConfig;
 import org.openmrs.api.context.Context;
 import org.openmrs.api.context.ContextAuthenticationException;
 import org.openmrs.api.context.ContextMockHelper;
@@ -109,8 +111,7 @@ import org.xml.sax.InputSource;
  * To migrate your tests follow <a href="https://wiki.openmrs.org/display/docs/How+to+migrate+to+JUnit+5">How to migrate to JUnit 5</a>.
  * The JUnit 5 version of the class is {@link org.openmrs.test.jupiter.BaseContextSensitiveTest}.<p>
  */
-@ContextConfiguration(locations = { "classpath:applicationContext-service.xml",
-        "classpath*:moduleApplicationContext.xml", "classpath*:TestingApplicationContext.xml" })
+@ContextConfiguration(classes = { OpenmrsApplicationContextConfig.class, TestingApplicationContextConfig.class })
 @TestExecutionListeners(
 	listeners = {
 		TransactionalTestExecutionListener.class,

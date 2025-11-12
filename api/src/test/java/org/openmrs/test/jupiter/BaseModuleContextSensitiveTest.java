@@ -9,6 +9,8 @@
  */
 package org.openmrs.test.jupiter;
 
+import org.openmrs.api.OpenmrsApplicationContextConfig;
+import org.openmrs.api.config.TestingApplicationContextConfig;
 import org.springframework.test.context.ContextConfiguration;
 
 /**
@@ -23,8 +25,7 @@ import org.springframework.test.context.ContextConfiguration;
  * 
  * @since 2.4.0
  */
-@ContextConfiguration(locations = { "classpath:applicationContext-service.xml", "classpath*:TestingApplicationContext.xml",
-        "classpath*:moduleApplicationContext.xml" }, inheritLocations = false)
+@ContextConfiguration(classes = { OpenmrsApplicationContextConfig.class, TestingApplicationContextConfig.class }, inheritLocations = false)
 public abstract class BaseModuleContextSensitiveTest extends BaseContextSensitiveTest {
 
 }

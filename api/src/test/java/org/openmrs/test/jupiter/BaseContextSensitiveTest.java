@@ -80,6 +80,8 @@ import org.openmrs.PersonAttribute;
 import org.openmrs.PersonName;
 import org.openmrs.User;
 import org.openmrs.annotation.OpenmrsProfileExcludeFilter;
+import org.openmrs.api.OpenmrsApplicationContextConfig;
+import org.openmrs.api.config.TestingApplicationContextConfig;
 import org.openmrs.api.context.Context;
 import org.openmrs.api.context.ContextAuthenticationException;
 import org.openmrs.api.context.ContextMockHelper;
@@ -116,8 +118,10 @@ import org.xml.sax.InputSource;
  * 
  * @since 2.4.0
  */
-@ContextConfiguration(locations = { "classpath:applicationContext-service.xml",
-        "classpath*:moduleApplicationContext.xml", "classpath*:TestingApplicationContext.xml" })
+@ContextConfiguration(
+    classes = { OpenmrsApplicationContextConfig.class, TestingApplicationContextConfig.class },
+    inheritLocations = false
+)
 @TestExecutionListeners(
 	listeners = { SkipBaseSetupAnnotationExecutionListener.class,
 		StartModuleExecutionListener.class },
